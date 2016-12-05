@@ -17,10 +17,10 @@ import csv
 
 #####################
 # sumo export file path
-sumoFilepath = 'HOME/6_Simulation/main_sumo_duaiterte_export.xml'
+sumoFilepath = 'HOME/6_Simulation/main_sumo_duaiterate_export.xml'
 
 # csv file path with number of cars per edge per day 
-csvExportpath = 'HOME/8_Auswertung/carCountDuaiterte2.csv'
+csvExportpath = 'HOME/8_Auswertung/carCountDuaiterte.csv'
 
 # list which contains edges with reference data
 referenceEdge = ['44610923#1','58591673','-328944730#0','-44823284#0','57890915','25678026#3','43962531#0','-339294548','218643895#0','-75842027','43962529#0','-4817433','23603265','51971177','-203762445#0','368182998#0','-184746471','74704295','335085667','-171527349#2','25211072','173565348','-384145297#1','27546626#1','23586167','184171861','184719743','78135469#2',
@@ -74,7 +74,6 @@ class RouteHandler( xml.sax.ContentHandler ):
 				speed = '0'
 			if id in referenceEdge:
 				dictEdges.update(dict([(str(id), str(float(speed)*float(density)*24*3.6))]))
-				#dictEdges.update(dict([(str(id), str(float(density)))]))
 				dictAvNumber.update(dict([(str(id), str(sampledSeconds))]))
 
 	### (brauchts beim Trip nicht) Call when an elements ends 
@@ -319,5 +318,4 @@ with open(csvExportpath, 'wb') as csv_file:
     writer = csv.writer(csv_file)
     for key, value in sorted(dictMessstellen.items()):
        writer.writerow([key, value])
-
 
